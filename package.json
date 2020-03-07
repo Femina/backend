@@ -1,0 +1,23 @@
+{
+  "name": "backend-api",
+  "version": "1.0.0",
+  "description": "Simple Backend API application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Femina Ernest",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsdom": "^16.2.0",
+    "morgan": "^1.9.1",
+    "qs": "^6.9.1"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
