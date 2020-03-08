@@ -87,6 +87,34 @@ module.exports = function(app,express){
 			   })
 		   });
         });
+		
+		/**
+       * @name Transfer money
+       * @description
+       *  This is to transfer money from total Balance to ClientAccount
+       */ 
+
+      api.post('/transfer',function(req,res){
+           
+            var result = util.doTransferbyIBAN(req.params.iban,req.params.amount,req.params.currency, function(err,response,data){
+            if(!err){
+              res.send(data);   
+            }
+			
+           })
+		   .then(data=> {
+			   res.json({
+				   code: 202,
+				   data
+			   })
+		   })
+		   .catch(error=>{
+			   res.json({
+				   code: error.status,
+				   message: error.message
+			   })
+		   });
+        });
 
     return api;
 

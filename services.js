@@ -67,6 +67,31 @@ async function doTransfer(amount)
 	}
 }
 
+
+async function doTransferbyIBAN(iban,amount,currency)
+{
+	try
+	{
+		
+				doTransfer(amount)
+				.then(data=>{return data})
+				.catch(function (error) {
+					console.log(error);
+					return error;
+				})
+				.finally(function () {
+					console.log("Payment process is secured")
+				});
+				
+			
+	}
+	catch(error)
+	{
+		console.error(error);
+		throw error;
+	}
+}
+
 /**
  * @description
  * Service object to expose required functions
@@ -75,7 +100,8 @@ async function doTransfer(amount)
 var serviceObject = {
   "getBalance":getBalance,
   "getBank":getBank,
-  "doTransfer":doTransfer
+  "doTransfer":doTransfer,
+  "doTransferbyIBAN":doTransferbyIBAN
 }
 
 /**
