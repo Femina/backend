@@ -57,7 +57,8 @@ async function doTransfer(amount)
 	try
 	{
 		const totBalance = config.balance;
-		return (totBalance - amount);
+		config.balance = (totBalance - amount);
+		return config.balance;
 	}
 	catch(error)
 	{
