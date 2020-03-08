@@ -2,5 +2,5 @@
 module.exports = {
 "basepath":"",
 "port":process.env.PORT || 2400,
-"balance":100000 
+"balance":process.env.BALANCE || 100000 
 }

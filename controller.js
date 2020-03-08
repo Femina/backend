@@ -7,9 +7,9 @@ module.exports = function(app,express){
     var api = express.Router();
 
       /**
-       * @name latest
+       * @Femina 
        * @description
-       *  end point to get latest exchange rate with USD as base currency
+       *  Service to get total balance
        */    
 
       api.get('/balance',function(req,res){
@@ -33,9 +33,9 @@ module.exports = function(app,express){
         });
 
       /**
-       * @name currencies
+       * @name Iban Validator Service
        * @description
-       *  end point to get list of currencies available
+       *  This will send Bank Details for mattching Iban
        */  
 
       api.get('/bank/:iban',function(req,res){
@@ -61,18 +61,31 @@ module.exports = function(app,express){
         });
 
       /**
-       * @name history
+       * @name Transfer money
        * @description
-       *  end point to get history data given a date ass parameter
+       *  This is to transfer money from total Balance to ClientAccount
        */ 
 
-      api.post('/transfer',function(req,res){
-           var dateString = req.query.date;
-           var result = util.doTransfer(dateString,function(err,response,data){
+      api.post('/transfer/:amount',function(req,res){
+           
+            var result = util.doTransfer(req.params.amount, function(err,response,data){
             if(!err){
               res.send(data);   
             }
-           });
+			
+           })
+		   .then(data=> {
+			   res.json({
+				   code: 200,
+				   data
+			   })
+		   })
+		   .catch(error=>{
+			   res.json({
+				   code: error.status,
+				   message: error.message
+			   })
+		   });
         });
 
     return api;

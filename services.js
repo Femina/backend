@@ -24,7 +24,7 @@ async function getBank(iban) {
 						var dom	= new JSDOM("`"+response.data+"`");
 						var imgElement = dom.window.document.querySelectorAll("img");
 						console.log(imgElement)
-						var bankName ="AE PSC.";
+						var bankName ="MASHREQ PC.";
 						var bankLogo = "https://dq8dwmysp7hk1.cloudfront.net/logos/mashreq.svg";
 						for (var i = 0; i < imgElement.length; i++) {
 							console.log(imgElement[i].getAttribute("src"));
@@ -52,18 +52,18 @@ async function getBank(iban) {
   }
 }
    
-async function doTransfer()
+async function doTransfer(amount)
 {
-  axios.post('/user', {
-    firstName: 'Fred',
-    lastName: 'Flintstone'
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+	try
+	{
+		const totBalance = config.balance;
+		return (totBalance - amount);
+	}
+	catch(error)
+	{
+		console.error(error);
+		throw error;
+	}
 }
 
 /**
